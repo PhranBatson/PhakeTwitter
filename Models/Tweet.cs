@@ -11,7 +11,7 @@ namespace PhakeTwitter.Models
         public int UserID { get; }
         public string Text { get; set; }
 
-        public DateTime PostDate { get; set; }
+        public string PostDate { get; set; }
 
         public User User { get; set; }
 

@@ -9,8 +9,8 @@ using PhakeTwitter.Models;
 namespace PhakeTwitter.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20191119205230_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20191119215645_InitialMigrate")]
+    partial class InitialMigrate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,7 +24,7 @@ namespace PhakeTwitter.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("PostDate")
+                    b.Property<string>("PostDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Text")

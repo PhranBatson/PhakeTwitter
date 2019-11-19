@@ -1,9 +1,8 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PhakeTwitter.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitialMigrate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,7 +27,7 @@ namespace PhakeTwitter.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Text = table.Column<string>(nullable: true),
-                    PostDate = table.Column<DateTime>(nullable: false),
+                    PostDate = table.Column<string>(nullable: true),
                     UserID1 = table.Column<int>(nullable: true)
                 },
                 constraints: table =>

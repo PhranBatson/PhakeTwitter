@@ -22,7 +22,7 @@ namespace PhakeTwitter.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("PostDate")
+                    b.Property<string>("PostDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Text")
