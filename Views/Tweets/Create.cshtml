@@ -1,4 +1,6 @@
-﻿@model PhakeTwitter.Models.Tweet
+﻿using PhakeTwitter.Models;
+
+@model PhakeTwitter.Models.Tweet
 
 @{
     ViewData["Title"] = "Create";
@@ -23,6 +25,12 @@
                 <input asp-for="PostDate" class="form-control" />
                 <span asp-validation-for="PostDate" class="text-danger"></span>
             </div>*@
+
+        <div class="formgroup">
+            @Html.DropDownListFor(m => m.User,
+                new SelectList(@ViewBag.User, @ViewBag.User.UserName,
+                "Select User"))
+        </div>
 
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

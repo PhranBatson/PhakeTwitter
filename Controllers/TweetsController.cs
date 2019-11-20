@@ -45,6 +45,8 @@ namespace PhakeTwitter.Controllers
         // GET: Tweets/Create
         public IActionResult Create()
         {
+            ViewBag.User = User;
+
             return View();
         }
 
@@ -65,6 +67,8 @@ namespace PhakeTwitter.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
+            ViewBag.User = User;
 
             return View(tweet);
         }
