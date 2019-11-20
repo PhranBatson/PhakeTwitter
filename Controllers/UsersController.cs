@@ -32,8 +32,8 @@ namespace PhakeTwitter.Controllers
                 return NotFound();
             }
 
-            var user = await _context.Users
-                .FirstOrDefaultAsync(m => m.ID == id);
+            var user = await _context.Users.Include(u => u.Tweets).FirstOrDefaultAsync(m => m.ID == id);
+
             if (user == null)
             {
                 return NotFound();

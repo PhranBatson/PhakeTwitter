@@ -21,7 +21,7 @@ namespace PhakeTwitter.Controllers
         // GET: Tweets
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Tweets.ToListAsync());
+            return View(await _context.Tweets.Include(t => t.User).ToListAsync());
         }
 
         // GET: Tweets/Details/5
@@ -32,8 +32,8 @@ namespace PhakeTwitter.Controllers
                 return NotFound();
             }
 
-            var tweet = await _context.Tweets
-                .FirstOrDefaultAsync(m => m.ID == id);
+            var tweet = await _context.Tweets.Include(t => t.User).FirstOrDefaultAsync(m => m.ID == id);
+
             if (tweet == null)
             {
                 return NotFound();
@@ -55,12 +55,11 @@ namespace PhakeTwitter.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Text, UserID")] Tweet tweet)
+        public async Task<IActionResult> Create([Bind("Text, UserID, User")] Tweet tweet)
         {
             if (ModelState.IsValid)
             {
                 DateTime rightThisSecond = DateTime.Now;
-
                 tweet.PostDate = rightThisSecond.ToString();
 
                 _context.Add(tweet);
