@@ -2,7 +2,7 @@
 
 namespace PhakeTwitter.Migrations
 {
-    public partial class InitialMigrate : Migration
+    public partial class useridset : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -26,25 +26,25 @@ namespace PhakeTwitter.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    UserID = table.Column<int>(nullable: false),
                     Text = table.Column<string>(nullable: true),
-                    PostDate = table.Column<string>(nullable: true),
-                    UserID1 = table.Column<int>(nullable: true)
+                    PostDate = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tweets", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Tweets_Users_UserID1",
-                        column: x => x.UserID1,
+                        name: "FK_Tweets_Users_UserID",
+                        column: x => x.UserID,
                         principalTable: "Users",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tweets_UserID1",
+                name: "IX_Tweets_UserID",
                 table: "Tweets",
-                column: "UserID1");
+                column: "UserID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

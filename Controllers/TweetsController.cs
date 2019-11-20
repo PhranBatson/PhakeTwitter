@@ -45,7 +45,7 @@ namespace PhakeTwitter.Controllers
         // GET: Tweets/Create
         public IActionResult Create()
         {
-            ViewBag.User = User;
+            ViewBag.UserList = new SelectList(_context.Users.ToList(), "ID", "UserName");
 
             return View();
         }
@@ -55,7 +55,7 @@ namespace PhakeTwitter.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Text")] Tweet tweet)
+        public async Task<IActionResult> Create([Bind("Text, UserID")] Tweet tweet)
         {
             if (ModelState.IsValid)
             {
@@ -68,7 +68,7 @@ namespace PhakeTwitter.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewBag.User = User;
+            ViewBag.UserList = new SelectList(_context.Users.ToList(), "ID", "UserName");
 
             return View(tweet);
         }

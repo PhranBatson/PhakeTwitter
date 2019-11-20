@@ -1,6 +1,4 @@
-﻿using PhakeTwitter.Models;
-
-@model PhakeTwitter.Models.Tweet
+﻿@model PhakeTwitter.Models.Tweet
 
 @{
     ViewData["Title"] = "Create";
@@ -27,9 +25,7 @@
             </div>*@
 
         <div class="formgroup">
-            @Html.DropDownListFor(m => m.User,
-                new SelectList(@ViewBag.User, @ViewBag.User.UserName,
-                "Select User"))
+            @Html.DropDownList("UserID", ViewBag.UserList, "Select User", null)
         </div>
 
             <div class="form-group">
